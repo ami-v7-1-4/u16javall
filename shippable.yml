@@ -7,7 +7,6 @@ jdk:
   - openjdk10
  # - oraclejdk8
   - oraclejdk10
-  - oraclejdk7
   - oraclejdk9
 
 runtime:
@@ -27,16 +26,16 @@ matrix:
         - env1=OneValueFromInclude
 #excludes this version 
   exclude:             
-    - jdk: oraclejdk9
-      env:
-        - env1=valuefromexcludesection
+    - jdk: oraclejdk9 #excludes this version 
+    #  env:
+     #   - env1=valuefromexcludesection #executes above version but excludes this env
 #allows failure for this version
   allow_failures: 
-    - jdk: oraclejdk7
+    - jdk: openjdk7
       nodePool: default_node_pool
-    - jdk: oraclejdk7
+    - jdk: openjdk7
       nodePool: dynamic__x86_64__Ubuntu_14_04__c4_large
-    - jdk: oraclejdk7
+    - jdk: openjdk7
       nodePool: dynamic__x86_64__CentOS_7__c4_large
     
 build:
