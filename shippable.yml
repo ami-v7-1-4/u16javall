@@ -7,7 +7,38 @@ jdk:
   - openjdk10
   - oraclejdk8
   - oraclejdk10
+  - oraclejdk7
+  - oraclejdk9
+
+runtime:
+  #- nodePool: custom__aarch64__Ubuntu_16_04
+  - nodePool: default_node_pool
+  - nodePool: dynamic__x86_64__Ubuntu_14_04__c4_large
+  - nodePool: dynamic__x86_64__CentOS_7__c4_large
+  #- nodePool: dynamic__x86_64__WindowsServer_2016__c4_large	
+  #- nodePool: default-restricted
  
+matrix:
+#include this version with the env 
+  include:               
+    - jdk: oraclejdk8 #this cant trigger 3 builds for multiple node pool. Include section purpose is trigger something in single build not as matrix. if we apply multiple node pool here it might end up in triggering in matrix so doesnt apply.
+      env: 
+        - M1=ONE #just to pass build Since this is in include section it wont take matrix environment variable and value so adding same env n value here. since in all section we are verifing env n value
+        - env1=OneValueFromInclude
+#excludes this version 
+  exclude:             
+    - jdk: oraclejdk9
+      env:
+        - env1=valuefromexcludesection
+#allows failure for this version
+  allow_failures: 
+    - jdk: oraclejdk7
+      nodePool: default_node_pool
+    - jdk: oraclejdk7
+      nodePool: dynamic__x86_64__Ubuntu_14_04__c4_large
+    - jdk: oraclejdk7
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
+    
 build:
   pre_ci_boot:
     image_name: drydock/u16javall
