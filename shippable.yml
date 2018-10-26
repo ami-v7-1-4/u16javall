@@ -5,8 +5,9 @@ jdk:
   - openjdk8
   - openjdk9
   - openjdk10
+  - openjdk11
   - oraclejdk8
-  - oraclejdk10
+  - oraclejdk11
   
 build:
   pre_ci_boot:
