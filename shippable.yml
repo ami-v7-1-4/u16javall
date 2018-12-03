@@ -20,6 +20,8 @@ build:
     - mvn --version    
     - ant -version 
     - gradle --version
+    - MY_JDK_SET="$(source shipctl jdk set oraclejdk10)"
+    - echo MY_JDK_SET=$MY_JDK_SET
     - docker pull shippabledocker/sample_node_pvt:ecr
     
 integrations:
