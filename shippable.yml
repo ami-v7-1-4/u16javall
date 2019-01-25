@@ -17,9 +17,9 @@ build:
   ci:
     - java -version
     - echo $SHIPPABLE_JDK_VERSION
-    - mvn --version    
-    - ant -version 
-    - gradle --version
+    - mvn --version    #3.6.0
+    - ant -version #1.9.13
+    - gradle --version #5.1
     - MY_JDK_SET="$(source shipctl jdk set oraclejdk11)"
     - docker pull shippabledocker/sample_node_pvt:ecr
     
